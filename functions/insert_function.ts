@@ -1,11 +1,11 @@
 import { DefineFunction, Schema, SlackFunction } from "deno-slack-sdk/mod.ts";
-import { GlossaryDataStore } from "../datastores/glossary.ts";
+import GlossaryDataStore from "../datastores/glossary_datastore.ts";
 
 export const InsertIntoDatastorefunctionDefinition = DefineFunction({
   callback_id: "inser_into_datastore",
   title: "Insert into datastore",
   description: "Add word and definition",
-  source_file: "functions.reader.ts",
+  source_file: "functions/insert_function.ts",
   input_parameters: {
     properties: {
       word: {
@@ -13,7 +13,7 @@ export const InsertIntoDatastorefunctionDefinition = DefineFunction({
         description: "The word",
       },
       definition: {
-        type: Schema.types.array,
+        type: Schema.types.string,
         description: "Definitions of the word. Could contain multiple values",
       },
       // contributor: {
@@ -32,13 +32,14 @@ export const InsertIntoDatastorefunctionDefinition = DefineFunction({
 export default SlackFunction(InsertIntoDatastorefunctionDefinition,
   async ({ inputs, client }) => {
     const contributor = "Leon Liang";
-    const response = await client.apps.datastore.put({
+    const response = await client.apps.datastore.put<typeof GlossaryDataStore.definition>({
       datastore: "glossary",
       item: {
         word: inputs.word,
         definition: inputs.definition,
-        contributor: "Leon Liang",
-        // lastUpdate: 
+        // contributor: "U04UKL1AWLV",
+        // lastUpdate: new Date(),
+        // refCount: 1,
       },
     });
 
