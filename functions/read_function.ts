@@ -28,9 +28,6 @@ export const ReadDatastorefunctionDefinition = DefineFunction({
 
 export default SlackFunction(ReadDatastorefunctionDefinition,
   async ({ inputs, client }) => {
-    // cost load = {
-
-    // }
     const response = await client.apps.datastore.query<typeof GlossaryDataStore.definition>({
       datastore: "glossary",
       expression: "#word = :word",
@@ -38,12 +35,25 @@ export default SlackFunction(ReadDatastorefunctionDefinition,
       expression_values: { ":word": inputs.word }
     });
 
+    console.log(response);
+
     if (!response.ok) {
       const error = `Failed to get a row in datastore: ${response.error}`;
       return { error };
     }
 
-    const definition = response.item.definition ?? "undefined";
+    var definition = inputs.word + ":";
+
+    for (let i = 0; i < response.items.length; i++) {
+
+      console.log(response.items[i]);
+
+      definition += `\n - ${response.items[i].definition}`
+    };
+
+    // if (response.items.length != 0) {
+    //   definition = inputs.word + ": " + response.items[0].definition;
+    // }
 
     return {
       outputs: { definition }

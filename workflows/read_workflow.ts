@@ -24,22 +24,18 @@ const ReadWorkflow = DefineWorkflow({
 const inputForm = ReadWorkflow.addStep(
   Schema.slack.functions.OpenForm,
   {
-    title: "get word",
+    title: "wut is it",
     interactivity: ReadWorkflow.inputs.interactivity,
-    submit_label: "wooooord",
+    submit_label: "wut",
     fields: {
-      elements: [{
-        name: "channel",
-        title: "Channel to send message to",
-        type: Schema.slack.types.channel_id,
-        default: ReadWorkflow.inputs.channel,
-      }, {
-        name: "word",
-        title: "word",
-        type: Schema.types.string,
-        long: true,
-      }],
-      required: ["channel", "word"],
+      elements: [
+        {
+          name: "word",
+          title: "word",
+          type: Schema.types.string,
+          long: false,
+        }],
+      required: ["word"],
     },
   },
 );
@@ -49,7 +45,7 @@ const retrieveDefinition = ReadWorkflow.addStep(ReadDatastorefunctionDefinition,
 });
 
 ReadWorkflow.addStep(Schema.slack.functions.SendMessage, {
-  channel_id: inputForm.outputs.fields.channel,
+  channel_id: ReadWorkflow.inputs.channel,
   message: retrieveDefinition.outputs.definition,
 });
 
