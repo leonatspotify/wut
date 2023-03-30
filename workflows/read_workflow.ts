@@ -4,7 +4,7 @@ import { ReadDatastorefunctionDefinition } from "../functions/read_function.ts";
 const ReadWorkflow = DefineWorkflow({
   callback_id: "read_workflow",
   title: "Read workflow",
-  description: "A read workflow",
+  // description: "Get a definition",
   input_parameters: {
     properties: {
       interactivity: {

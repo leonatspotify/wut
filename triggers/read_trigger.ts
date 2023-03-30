@@ -3,8 +3,8 @@ import ReadWorkflow from "../workflows/read_workflow.ts";
 
 const readTrigger: Trigger<typeof ReadWorkflow.definition> = {
   type: "shortcut",
-  name: "Read trigger",
-  description: "A read trigger",
+  name: "wut",
+  // description: "A read trigger",
   workflow: "#/workflows/read_workflow",
   inputs: {
     interactivity: {

@@ -44,16 +44,16 @@ export default SlackFunction(ReadDatastorefunctionDefinition,
 
     var definition = inputs.word + ":";
 
+    if (response.items.length == 0) {
+      definition += " undefined. \n Add definition by using /wut add [word] [definition]";
+    }
+
     for (let i = 0; i < response.items.length; i++) {
 
       console.log(response.items[i]);
 
       definition += `\n - ${response.items[i].definition}`
     };
-
-    // if (response.items.length != 0) {
-    //   definition = inputs.word + ": " + response.items[0].definition;
-    // }
 
     return {
       outputs: { definition }

@@ -3,8 +3,8 @@ import InsertWorkflow from "../workflows/insert_workflow.ts";
 
 const insert_trigger: Trigger<typeof InsertWorkflow.definition> = {
   type: "shortcut",
-  name: "insert_trigger",
-  description: "Add a definition",
+  name: "add definition",
+  // description: "Add a definition",
   workflow: "#/workflows/insert_workflow",
   inputs: {
     interactivity: {

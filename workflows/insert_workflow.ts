@@ -4,7 +4,7 @@ import { InsertIntoDatastorefunctionDefinition } from "../functions/insert_funct
 const InsertWorkflow = DefineWorkflow({
   callback_id: "insert_workflow",
   title: "insert workflow",
-  description: "A read workflow",
+  // description: "A read workflow",
   input_parameters: {
     properties: {
       interactivity: {
