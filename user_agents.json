@@ -1,4 +1,4 @@
-[
+
     {
         "user_agents": [
             "^Acast.+[Aa]ndroid"
@@ -1624,4 +1624,3 @@
         "bot": true,
         "developer_notes": "Institut National de l'Audiovisuel is a repository of all French radio and television audiovisual archives."
     }
-]
